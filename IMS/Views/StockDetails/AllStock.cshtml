@@ -1,0 +1,44 @@
+﻿@model IEnumerable<IMS.Models.Stock_Category>
+
+@{
+    ViewBag.Title = "All stock";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="content-header">
+    <h1>
+        All Stock
+        <small>View</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i> Dashboard</a></li>
+        <li class="active">All Stock</li>
+    </ol>
+</section>
+<br />
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+            <div class="box" style="border-top-color: #3c8dbc">
+                <div class="box-header">
+                    <h3 class="box-title">@item.description</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body" style="height: 250px;padding-left: 20px;padding-right: 20px">
+                       @Html.Action("StockInCategory", new { id = @item.category_ID })
+                    <div>
+                        @Html.ActionLink("View all","ViewStock", "StockDetails", new { id = @item.category_ID }, new { @class = "btn-link" })
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+    <!-- /.col -->
+    }
+    
+</div>
+<!-- /.row -->

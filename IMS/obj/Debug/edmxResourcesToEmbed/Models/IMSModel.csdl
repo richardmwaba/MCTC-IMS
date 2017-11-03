@@ -1,0 +1,804 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="StockManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Approval_Status">
+    <Key>
+      <PropertyRef Name="approval_ID" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="approval_ID" Type="Int32" Nullable="false" />
+    <Property Name="status" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Request_Details" Relationship="Self.FK_Request_Details_Approval_Status" FromRole="Approval_Status" ToRole="Request_Details" />
+  </EntityType>
+  <EntityType Name="Employee_Details">
+    <Key>
+      <PropertyRef Name="mine_number" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="other_names" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mine_number" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="site" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="department" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="position" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="job_title" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Movements" Relationship="Self.FK_Issue_Details_Employee_Details" FromRole="Employee_Details" ToRole="Movements" />
+    <NavigationProperty Name="Movements1" Relationship="Self.FK_Movements_Employee_Details" FromRole="Employee_Details" ToRole="Movements" />
+    <NavigationProperty Name="Request_Details" Relationship="Self.FK_Request_Details_Employee_Details" FromRole="Employee_Details" ToRole="Request_Details" />
+    <NavigationProperty Name="Request_Details1" Relationship="Self.FK_Request_Details_Employee_Details1" FromRole="Employee_Details" ToRole="Request_Details" />
+    <NavigationProperty Name="Stock_Withdraw" Relationship="Self.FK_Stock_Withdraw_Employee_Details" FromRole="Employee_Details" ToRole="Stock_Withdraw" />
+    <NavigationProperty Name="user" Relationship="Self.FK_users_Employee_Details" FromRole="Employee_Details" ToRole="users" />
+  </EntityType>
+  <EntityType Name="Movement">
+    <Key>
+      <PropertyRef Name="movement_ID" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="movement_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="stock_code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="compartment_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="request_ID" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="quantity_supplied" Type="Int32" Nullable="false" />
+    <Property Name="issued_by" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="received_by" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="transaction_type_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="date_received" Type="DateTime" Precision="3" />
+    <Property Name="return_status" Type="Int32" />
+    <Property Name="expected_return_date" Type="DateTime" Precision="3" />
+    <Property Name="return_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Employee_Details" Relationship="Self.FK_Issue_Details_Employee_Details" FromRole="Movements" ToRole="Employee_Details" />
+    <NavigationProperty Name="Employee_Details1" Relationship="Self.FK_Movements_Employee_Details" FromRole="Movements" ToRole="Employee_Details" />
+    <NavigationProperty Name="Return_Status1" Relationship="Self.FK_Issue_Details_Return_Status" FromRole="Movements" ToRole="Return_Status" />
+    <NavigationProperty Name="Stock_Details" Relationship="Self.FK_Movements_Stock_Details" FromRole="Movements" ToRole="Stock_Details" />
+    <NavigationProperty Name="Type_of_Transaction" Relationship="Self.FK_Movements_Type_of_Transaction" FromRole="Movements" ToRole="Type_of_Transaction" />
+  </EntityType>
+  <EntityType Name="Request_Details">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="request_ID" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="stock_code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="compartment_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="purpose_of_item" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mine_number" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="date_of_request" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <Property Name="unit_of_issue" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="approval_status" Type="Int32" />
+    <Property Name="approver" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Approval_Status1" Relationship="Self.FK_Request_Details_Approval_Status" FromRole="Request_Details" ToRole="Approval_Status" />
+    <NavigationProperty Name="Employee_Details" Relationship="Self.FK_Request_Details_Employee_Details" FromRole="Request_Details" ToRole="Employee_Details" />
+    <NavigationProperty Name="Employee_Details1" Relationship="Self.FK_Request_Details_Employee_Details1" FromRole="Request_Details" ToRole="Employee_Details" />
+    <NavigationProperty Name="Stock_Details" Relationship="Self.FK_Request_Details_Stock_Details" FromRole="Request_Details" ToRole="Stock_Details" />
+  </EntityType>
+  <EntityType Name="Return_Status">
+    <Key>
+      <PropertyRef Name="status_ID" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="status_ID" Type="Int32" Nullable="false" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Movements" Relationship="Self.FK_Issue_Details_Return_Status" FromRole="Return_Status" ToRole="Movements" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="role_ID" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="role_ID" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="role_descriptiom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="users" Relationship="Self.FK_users_Roles" FromRole="Roles" ToRole="users" />
+  </EntityType>
+  <EntityType Name="Shelf_Compartment">
+    <Key>
+      <PropertyRef Name="compartment_ID" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="compartment_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="shelf_ID" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Shelves_Table" Relationship="Self.FK_Shelf_Compartment_Shelves_Table" FromRole="Shelf_Compartment" ToRole="Shelves_Table" />
+    <NavigationProperty Name="Stock_Details" Relationship="Self.FK_Stock_Details_Shelf_Compartment" FromRole="Shelf_Compartment" ToRole="Stock_Details" />
+    <NavigationProperty Name="Stock_Withdraw" Relationship="Self.FK_Stock_Withdraw_Shelf_Compartment" FromRole="Shelf_Compartment" ToRole="Stock_Withdraw" />
+  </EntityType>
+  <EntityType Name="Shelves_Table">
+    <Key>
+      <PropertyRef Name="shelf_ID" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="shelf_ID" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="shelf_allocation" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Shelf_Compartment" Relationship="Self.FK_Shelf_Compartment_Shelves_Table" FromRole="Shelves_Table" ToRole="Shelf_Compartment" />
+  </EntityType>
+  <EntityType Name="Stock_Availability">
+    <Key>
+      <PropertyRef Name="availability_ID" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="availability_ID" Type="Int32" Nullable="false" />
+    <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Stock_Details" Relationship="Self.FK_Stock_Details_Stock_Availability" FromRole="Stock_Availability" ToRole="Stock_Details" />
+  </EntityType>
+  <EntityType Name="Stock_Category">
+    <Key>
+      <PropertyRef Name="category_ID" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="category_ID" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Stock_Details" Relationship="Self.FK_Stock_Details_Stock_Category" FromRole="Stock_Category" ToRole="Stock_Details" />
+    <NavigationProperty Name="Stock_Withdraw" Relationship="Self.FK_Stock_Withdraw_Stock_Category" FromRole="Stock_Category" ToRole="Stock_Withdraw" />
+  </EntityType>
+  <EntityType Name="Stock_Details">
+    <Key>
+      <PropertyRef Name="stock_code" />
+      <PropertyRef Name="compartment_ID" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="stock_code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="quantity_available" Type="Int32" Nullable="false" />
+    <Property Name="unit_of_withdraw" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description_of_items" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="unit_of_issue" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="reorder_level" Type="Int32" />
+    <Property Name="minimum_level" Type="Int32" />
+    <Property Name="date_of_order" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="expiry_date" Type="DateTime" Precision="3" />
+    <Property Name="stock_type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="compartment_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="category_ID" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="availability" Type="Int32" />
+    <NavigationProperty Name="Movements" Relationship="Self.FK_Movements_Stock_Details" FromRole="Stock_Details" ToRole="Movements" />
+    <NavigationProperty Name="Request_Details" Relationship="Self.FK_Request_Details_Stock_Details" FromRole="Stock_Details" ToRole="Request_Details" />
+    <NavigationProperty Name="Shelf_Compartment" Relationship="Self.FK_Stock_Details_Shelf_Compartment" FromRole="Stock_Details" ToRole="Shelf_Compartment" />
+    <NavigationProperty Name="Stock_Availability" Relationship="Self.FK_Stock_Details_Stock_Availability" FromRole="Stock_Details" ToRole="Stock_Availability" />
+    <NavigationProperty Name="Stock_Category" Relationship="Self.FK_Stock_Details_Stock_Category" FromRole="Stock_Details" ToRole="Stock_Category" />
+    <NavigationProperty Name="Stock_Type1" Relationship="Self.FK_Stock_Details_Stock_Type" FromRole="Stock_Details" ToRole="Stock_Type" />
+    <NavigationProperty Name="Stock_Withdraw" Relationship="Self.FK_Stock_Withdraw_Stock_Details" FromRole="Stock_Details" ToRole="Stock_Withdraw" />
+  </EntityType>
+  <EntityType Name="Stock_Type">
+    <Key>
+      <PropertyRef Name="type_ID" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="type_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Stock_Details" Relationship="Self.FK_Stock_Details_Stock_Type" FromRole="Stock_Type" ToRole="Stock_Details" />
+  </EntityType>
+  <EntityType Name="Stock_Withdraw">
+    <Key>
+      <PropertyRef Name="withdraw_ID" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="withdraw_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="stock_code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <Property Name="unit_of_withdraw" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="withdrawer" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="date_of_withdraw" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="compartment_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="stock_type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="expiry_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="category_ID" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Employee_Details" Relationship="Self.FK_Stock_Withdraw_Employee_Details" FromRole="Stock_Withdraw" ToRole="Employee_Details" />
+    <NavigationProperty Name="Shelf_Compartment" Relationship="Self.FK_Stock_Withdraw_Shelf_Compartment" FromRole="Stock_Withdraw" ToRole="Shelf_Compartment" />
+    <NavigationProperty Name="Stock_Category" Relationship="Self.FK_Stock_Withdraw_Stock_Category" FromRole="Stock_Withdraw" ToRole="Stock_Category" />
+    <NavigationProperty Name="Stock_Details" Relationship="Self.FK_Stock_Withdraw_Stock_Details" FromRole="Stock_Withdraw" ToRole="Stock_Details" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Type_of_Transaction">
+    <Key>
+      <PropertyRef Name="transaction_type_ID" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="transaction_type_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="type_description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Movements" Relationship="Self.FK_Movements_Type_of_Transaction" FromRole="Type_of_Transaction" ToRole="Movements" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="mine_number" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mine_number" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="role_ID" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Employee_Details" Relationship="Self.FK_users_Employee_Details" FromRole="users" ToRole="Employee_Details" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_users_Roles" FromRole="users" ToRole="Roles" />
+  </EntityType>
+  <EntityType Name="Shelf">
+    <Key>
+      <PropertyRef Name="compartment" />
+      <PropertyRef Name="shelf1" />
+    </Key>
+    <Property Name="compartment" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="shelf1" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Request_Details_Approval_Status">
+    <End Role="Approval_Status" Type="Self.Approval_Status" Multiplicity="0..1" />
+    <End Role="Request_Details" Type="Self.Request_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Approval_Status">
+        <PropertyRef Name="approval_ID" />
+      </Principal>
+      <Dependent Role="Request_Details">
+        <PropertyRef Name="approval_status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Issue_Details_Employee_Details">
+    <End Role="Employee_Details" Type="Self.Employee_Details" Multiplicity="1" />
+    <End Role="Movements" Type="Self.Movement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee_Details">
+        <PropertyRef Name="mine_number" />
+      </Principal>
+      <Dependent Role="Movements">
+        <PropertyRef Name="received_by" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Movements_Employee_Details">
+    <End Role="Employee_Details" Type="Self.Employee_Details" Multiplicity="1" />
+    <End Role="Movements" Type="Self.Movement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee_Details">
+        <PropertyRef Name="mine_number" />
+      </Principal>
+      <Dependent Role="Movements">
+        <PropertyRef Name="issued_by" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Request_Details_Employee_Details">
+    <End Role="Employee_Details" Type="Self.Employee_Details" Multiplicity="1" />
+    <End Role="Request_Details" Type="Self.Request_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee_Details">
+        <PropertyRef Name="mine_number" />
+      </Principal>
+      <Dependent Role="Request_Details">
+        <PropertyRef Name="mine_number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Request_Details_Employee_Details1">
+    <End Role="Employee_Details" Type="Self.Employee_Details" Multiplicity="0..1" />
+    <End Role="Request_Details" Type="Self.Request_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee_Details">
+        <PropertyRef Name="mine_number" />
+      </Principal>
+      <Dependent Role="Request_Details">
+        <PropertyRef Name="approver" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_Withdraw_Employee_Details">
+    <End Role="Employee_Details" Type="Self.Employee_Details" Multiplicity="1" />
+    <End Role="Stock_Withdraw" Type="Self.Stock_Withdraw" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee_Details">
+        <PropertyRef Name="mine_number" />
+      </Principal>
+      <Dependent Role="Stock_Withdraw">
+        <PropertyRef Name="withdrawer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_users_Employee_Details">
+    <End Role="Employee_Details" Type="Self.Employee_Details" Multiplicity="1" />
+    <End Role="users" Type="Self.user" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Employee_Details">
+        <PropertyRef Name="mine_number" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="mine_number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Issue_Details_Return_Status">
+    <End Role="Return_Status" Type="Self.Return_Status" Multiplicity="0..1" />
+    <End Role="Movements" Type="Self.Movement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Return_Status">
+        <PropertyRef Name="status_ID" />
+      </Principal>
+      <Dependent Role="Movements">
+        <PropertyRef Name="return_status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Movements_Stock_Details">
+    <End Role="Stock_Details" Type="Self.Stock_Details" Multiplicity="0..1" />
+    <End Role="Movements" Type="Self.Movement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stock_Details">
+        <PropertyRef Name="stock_code" />
+        <PropertyRef Name="compartment_ID" />
+      </Principal>
+      <Dependent Role="Movements">
+        <PropertyRef Name="stock_code" />
+        <PropertyRef Name="compartment_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Movements_Type_of_Transaction">
+    <End Role="Type_of_Transaction" Type="Self.Type_of_Transaction" Multiplicity="0..1" />
+    <End Role="Movements" Type="Self.Movement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Type_of_Transaction">
+        <PropertyRef Name="transaction_type_ID" />
+      </Principal>
+      <Dependent Role="Movements">
+        <PropertyRef Name="transaction_type_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Request_Details_Stock_Details">
+    <End Role="Stock_Details" Type="Self.Stock_Details" Multiplicity="0..1" />
+    <End Role="Request_Details" Type="Self.Request_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stock_Details">
+        <PropertyRef Name="stock_code" />
+        <PropertyRef Name="compartment_ID" />
+      </Principal>
+      <Dependent Role="Request_Details">
+        <PropertyRef Name="stock_code" />
+        <PropertyRef Name="compartment_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_users_Roles">
+    <End Role="Roles" Type="Self.Role" Multiplicity="1" />
+    <End Role="users" Type="Self.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="role_ID" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="role_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Shelf_Compartment_Shelves_Table">
+    <End Role="Shelves_Table" Type="Self.Shelves_Table" Multiplicity="1" />
+    <End Role="Shelf_Compartment" Type="Self.Shelf_Compartment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shelves_Table">
+        <PropertyRef Name="shelf_ID" />
+      </Principal>
+      <Dependent Role="Shelf_Compartment">
+        <PropertyRef Name="shelf_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_Details_Shelf_Compartment">
+    <End Role="Shelf_Compartment" Type="Self.Shelf_Compartment" Multiplicity="1" />
+    <End Role="Stock_Details" Type="Self.Stock_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shelf_Compartment">
+        <PropertyRef Name="compartment_ID" />
+      </Principal>
+      <Dependent Role="Stock_Details">
+        <PropertyRef Name="compartment_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_Withdraw_Shelf_Compartment">
+    <End Role="Shelf_Compartment" Type="Self.Shelf_Compartment" Multiplicity="1" />
+    <End Role="Stock_Withdraw" Type="Self.Stock_Withdraw" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shelf_Compartment">
+        <PropertyRef Name="compartment_ID" />
+      </Principal>
+      <Dependent Role="Stock_Withdraw">
+        <PropertyRef Name="compartment_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_Details_Stock_Availability">
+    <End Role="Stock_Availability" Type="Self.Stock_Availability" Multiplicity="0..1" />
+    <End Role="Stock_Details" Type="Self.Stock_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stock_Availability">
+        <PropertyRef Name="availability_ID" />
+      </Principal>
+      <Dependent Role="Stock_Details">
+        <PropertyRef Name="availability" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_Details_Stock_Category">
+    <End Role="Stock_Category" Type="Self.Stock_Category" Multiplicity="0..1" />
+    <End Role="Stock_Details" Type="Self.Stock_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stock_Category">
+        <PropertyRef Name="category_ID" />
+      </Principal>
+      <Dependent Role="Stock_Details">
+        <PropertyRef Name="category_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_Withdraw_Stock_Category">
+    <End Role="Stock_Category" Type="Self.Stock_Category" Multiplicity="1" />
+    <End Role="Stock_Withdraw" Type="Self.Stock_Withdraw" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stock_Category">
+        <PropertyRef Name="category_ID" />
+      </Principal>
+      <Dependent Role="Stock_Withdraw">
+        <PropertyRef Name="category_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_Details_Stock_Type">
+    <End Role="Stock_Type" Type="Self.Stock_Type" Multiplicity="1" />
+    <End Role="Stock_Details" Type="Self.Stock_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stock_Type">
+        <PropertyRef Name="type_ID" />
+      </Principal>
+      <Dependent Role="Stock_Details">
+        <PropertyRef Name="stock_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_Withdraw_Stock_Details">
+    <End Role="Stock_Details" Type="Self.Stock_Details" Multiplicity="1" />
+    <End Role="Stock_Withdraw" Type="Self.Stock_Withdraw" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stock_Details">
+        <PropertyRef Name="stock_code" />
+        <PropertyRef Name="compartment_ID" />
+      </Principal>
+      <Dependent Role="Stock_Withdraw">
+        <PropertyRef Name="stock_code" />
+        <PropertyRef Name="compartment_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="StockManagementEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Approval_Status" EntityType="Self.Approval_Status" />
+    <EntitySet Name="Employee_Details" EntityType="Self.Employee_Details" />
+    <EntitySet Name="Movements" EntityType="Self.Movement" />
+    <EntitySet Name="Request_Details" EntityType="Self.Request_Details" />
+    <EntitySet Name="Return_Status" EntityType="Self.Return_Status" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="Shelf_Compartment" EntityType="Self.Shelf_Compartment" />
+    <EntitySet Name="Shelves_Table" EntityType="Self.Shelves_Table" />
+    <EntitySet Name="Stock_Availability" EntityType="Self.Stock_Availability" />
+    <EntitySet Name="Stock_Category" EntityType="Self.Stock_Category" />
+    <EntitySet Name="Stock_Details" EntityType="Self.Stock_Details" />
+    <EntitySet Name="Stock_Type" EntityType="Self.Stock_Type" />
+    <EntitySet Name="Stock_Withdraw" EntityType="Self.Stock_Withdraw" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Type_of_Transaction" EntityType="Self.Type_of_Transaction" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <EntitySet Name="Shelves" EntityType="Self.Shelf" />
+    <AssociationSet Name="FK_Request_Details_Approval_Status" Association="Self.FK_Request_Details_Approval_Status">
+      <End Role="Approval_Status" EntitySet="Approval_Status" />
+      <End Role="Request_Details" EntitySet="Request_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Issue_Details_Employee_Details" Association="Self.FK_Issue_Details_Employee_Details">
+      <End Role="Employee_Details" EntitySet="Employee_Details" />
+      <End Role="Movements" EntitySet="Movements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Movements_Employee_Details" Association="Self.FK_Movements_Employee_Details">
+      <End Role="Employee_Details" EntitySet="Employee_Details" />
+      <End Role="Movements" EntitySet="Movements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Request_Details_Employee_Details" Association="Self.FK_Request_Details_Employee_Details">
+      <End Role="Employee_Details" EntitySet="Employee_Details" />
+      <End Role="Request_Details" EntitySet="Request_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Request_Details_Employee_Details1" Association="Self.FK_Request_Details_Employee_Details1">
+      <End Role="Employee_Details" EntitySet="Employee_Details" />
+      <End Role="Request_Details" EntitySet="Request_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_Withdraw_Employee_Details" Association="Self.FK_Stock_Withdraw_Employee_Details">
+      <End Role="Employee_Details" EntitySet="Employee_Details" />
+      <End Role="Stock_Withdraw" EntitySet="Stock_Withdraw" />
+    </AssociationSet>
+    <AssociationSet Name="FK_users_Employee_Details" Association="Self.FK_users_Employee_Details">
+      <End Role="Employee_Details" EntitySet="Employee_Details" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Issue_Details_Return_Status" Association="Self.FK_Issue_Details_Return_Status">
+      <End Role="Return_Status" EntitySet="Return_Status" />
+      <End Role="Movements" EntitySet="Movements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Movements_Stock_Details" Association="Self.FK_Movements_Stock_Details">
+      <End Role="Stock_Details" EntitySet="Stock_Details" />
+      <End Role="Movements" EntitySet="Movements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Movements_Type_of_Transaction" Association="Self.FK_Movements_Type_of_Transaction">
+      <End Role="Type_of_Transaction" EntitySet="Type_of_Transaction" />
+      <End Role="Movements" EntitySet="Movements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Request_Details_Stock_Details" Association="Self.FK_Request_Details_Stock_Details">
+      <End Role="Stock_Details" EntitySet="Stock_Details" />
+      <End Role="Request_Details" EntitySet="Request_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_users_Roles" Association="Self.FK_users_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Shelf_Compartment_Shelves_Table" Association="Self.FK_Shelf_Compartment_Shelves_Table">
+      <End Role="Shelves_Table" EntitySet="Shelves_Table" />
+      <End Role="Shelf_Compartment" EntitySet="Shelf_Compartment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_Details_Shelf_Compartment" Association="Self.FK_Stock_Details_Shelf_Compartment">
+      <End Role="Shelf_Compartment" EntitySet="Shelf_Compartment" />
+      <End Role="Stock_Details" EntitySet="Stock_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_Withdraw_Shelf_Compartment" Association="Self.FK_Stock_Withdraw_Shelf_Compartment">
+      <End Role="Shelf_Compartment" EntitySet="Shelf_Compartment" />
+      <End Role="Stock_Withdraw" EntitySet="Stock_Withdraw" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_Details_Stock_Availability" Association="Self.FK_Stock_Details_Stock_Availability">
+      <End Role="Stock_Availability" EntitySet="Stock_Availability" />
+      <End Role="Stock_Details" EntitySet="Stock_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_Details_Stock_Category" Association="Self.FK_Stock_Details_Stock_Category">
+      <End Role="Stock_Category" EntitySet="Stock_Category" />
+      <End Role="Stock_Details" EntitySet="Stock_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_Withdraw_Stock_Category" Association="Self.FK_Stock_Withdraw_Stock_Category">
+      <End Role="Stock_Category" EntitySet="Stock_Category" />
+      <End Role="Stock_Withdraw" EntitySet="Stock_Withdraw" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_Details_Stock_Type" Association="Self.FK_Stock_Details_Stock_Type">
+      <End Role="Stock_Type" EntitySet="Stock_Type" />
+      <End Role="Stock_Details" EntitySet="Stock_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_Withdraw_Stock_Details" Association="Self.FK_Stock_Withdraw_Stock_Details">
+      <End Role="Stock_Details" EntitySet="Stock_Details" />
+      <End Role="Stock_Withdraw" EntitySet="Stock_Withdraw" />
+    </AssociationSet>
+    <FunctionImport Name="getAllApprovedORDeniedRequests" ReturnType="Collection(StockManagementModel.getAllApprovedORDeniedRequests_Result)">
+      <Parameter Name="approval_status" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getAllIssues" ReturnType="Collection(StockManagementModel.getAllIssues_Result)" />
+    <FunctionImport Name="getAllRequests" ReturnType="Collection(StockManagementModel.getAllRequests_Result)" />
+    <FunctionImport Name="getAllStock" ReturnType="Collection(StockManagementModel.getAllStock_Result)" />
+    <FunctionImport Name="getAllUnreturnedStock" ReturnType="Collection(StockManagementModel.getAllUnreturnedStock_Result)">
+      <Parameter Name="return_status" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getAvailableStock" ReturnType="Collection(StockManagementModel.getAvailableStock_Result)">
+      <Parameter Name="category_id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getMovements" ReturnType="Collection(StockManagementModel.getMovements_Result)">
+      <Parameter Name="transactiontype" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getStockByCategory" ReturnType="Collection(StockManagementModel.getStockByCategory_Result)">
+      <Parameter Name="category" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getStockShelves" ReturnType="Collection(StockManagementModel.getStockShelves_Result)" />
+    <FunctionImport Name="insertIssue">
+      <Parameter Name="movement_ID" Mode="In" Type="String" />
+      <Parameter Name="stock_code" Mode="In" Type="String" />
+      <Parameter Name="request_ID" Mode="In" Type="String" />
+      <Parameter Name="quantity_supplied" Mode="In" Type="Int32" />
+      <Parameter Name="issued_by" Mode="In" Type="String" />
+      <Parameter Name="received_by" Mode="In" Type="String" />
+      <Parameter Name="date_received" Mode="In" Type="DateTime" />
+      <Parameter Name="return_status" Mode="In" Type="Int32" />
+      <Parameter Name="expected_return_date" Mode="In" Type="DateTime" />
+      <Parameter Name="return_date" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="insertRequest">
+      <Parameter Name="request_ID" Mode="In" Type="String" />
+      <Parameter Name="stock_code" Mode="In" Type="String" />
+      <Parameter Name="comaprtment_ID" Mode="In" Type="String" />
+      <Parameter Name="purpose_of_item" Mode="In" Type="String" />
+      <Parameter Name="mine_number" Mode="In" Type="String" />
+      <Parameter Name="date_of_request" Mode="In" Type="String" />
+      <Parameter Name="quantity" Mode="In" Type="Int32" />
+      <Parameter Name="unit_of_issue" Mode="In" Type="String" />
+      <Parameter Name="approval_status" Mode="In" Type="Int32" />
+      <Parameter Name="approver" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insertShelf">
+      <Parameter Name="shelf_ID" Mode="In" Type="String" />
+      <Parameter Name="shelf_allocation" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insertShelfCompartment">
+      <Parameter Name="compartment_ID" Mode="In" Type="String" />
+      <Parameter Name="shelf_ID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insertStock">
+      <Parameter Name="stock_code" Mode="In" Type="String" />
+      <Parameter Name="quantity_available" Mode="In" Type="Int32" />
+      <Parameter Name="unit_of_withdraw" Mode="In" Type="String" />
+      <Parameter Name="description_of_items" Mode="In" Type="String" />
+      <Parameter Name="unit_of_issue" Mode="In" Type="String" />
+      <Parameter Name="reorder_level" Mode="In" Type="Int32" />
+      <Parameter Name="minimum_level" Mode="In" Type="Int32" />
+      <Parameter Name="date_of_order" Mode="In" Type="DateTime" />
+      <Parameter Name="expiry_date" Mode="In" Type="DateTime" />
+      <Parameter Name="stock_type" Mode="In" Type="String" />
+      <Parameter Name="compartment_ID" Mode="In" Type="String" />
+      <Parameter Name="category_ID" Mode="In" Type="String" />
+      <Parameter Name="availability" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="insertStockCategory">
+      <Parameter Name="category_ID" Mode="In" Type="String" />
+      <Parameter Name="description" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(StockManagementModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(StockManagementModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="StockToReorder" ReturnType="Collection(StockManagementModel.StockToReorder_Result)" />
+  </EntityContainer>
+  <ComplexType Name="getAllApprovedORDeniedRequests_Result">
+    <Property Type="String" Name="request_ID" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="description_of_items" Nullable="false" />
+    <Property Type="Int32" Name="quantity" Nullable="false" />
+    <Property Type="String" Name="purpose_of_item" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="requesterFirstName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="requesterSurname" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="date_of_request" Nullable="false" Precision="23" />
+    <Property Type="String" Name="status" Nullable="false" MaxLength="70" />
+    <Property Type="String" Name="approverFName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="approverLName" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="getAllIssues_Result">
+    <Property Type="String" Name="movement_ID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="description_of_items" Nullable="false" />
+    <Property Type="String" Name="request_ID" Nullable="false" MaxLength="25" />
+    <Property Type="Int32" Name="quantity_supplied" Nullable="false" />
+    <Property Type="String" Name="IssuerFirstName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="IssuerLastName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ReceiverFNAme" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ReceiverLNAme" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="status" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="expected_return_date" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="return_date" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="getAllRequests_Result">
+    <Property Type="String" Name="request_ID" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="description_of_items" Nullable="false" />
+    <Property Type="Int32" Name="quantity" Nullable="false" />
+    <Property Type="String" Name="purpose_of_item" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="requesterFirstName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="requesterSurname" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="date_of_request" Nullable="false" Precision="23" />
+    <Property Type="String" Name="status" Nullable="false" MaxLength="70" />
+  </ComplexType>
+  <ComplexType Name="getAllStock_Result">
+    <Property Type="String" Name="stock_code" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="description_of_items" Nullable="false" />
+    <Property Type="Int32" Name="quantity_available" Nullable="false" />
+    <Property Type="String" Name="unit_of_issue" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="unit_of_withdraw" Nullable="false" MaxLength="60" />
+    <Property Type="Int32" Name="reorder_level" Nullable="true" />
+    <Property Type="Int32" Name="minimum_level" Nullable="true" />
+    <Property Type="String" Name="description" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="date_of_order" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="expiry_date" Nullable="true" Precision="23" />
+    <Property Type="String" Name="compartment_ID" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="shelf" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="description1" Nullable="false" MaxLength="70" />
+    <Property Type="String" Name="status" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="getAllUnreturnedStock_Result">
+    <Property Type="String" Name="movement_ID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="description_of_items" Nullable="false" />
+    <Property Type="String" Name="request_ID" Nullable="false" MaxLength="25" />
+    <Property Type="Int32" Name="quantity_supplied" Nullable="false" />
+    <Property Type="String" Name="IssuerFirstName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="IssuerLastName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ReceiverFNAme" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ReceiverLNAme" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="status" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="expected_return_date" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="return_date" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="getAvailableStock_Result">
+    <Property Type="String" Name="stock_code" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="description_of_items" Nullable="false" />
+    <Property Type="Int32" Name="quantity_available" Nullable="false" />
+    <Property Type="String" Name="unit_of_issue" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="stock_type" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="expiry_date" Nullable="true" Precision="23" />
+    <Property Type="String" Name="compartment_ID" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="shelf" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="stock_category" Nullable="false" MaxLength="70" />
+    <Property Type="String" Name="status" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="getMovements_Result">
+    <Property Type="String" Name="movement_ID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="description_of_items" Nullable="false" />
+    <Property Type="String" Name="request_ID" Nullable="false" MaxLength="25" />
+    <Property Type="Int32" Name="quantity_supplied" Nullable="false" />
+    <Property Type="String" Name="IssuerFirstName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="IssuerLastName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ReceiverFNAme" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ReceiverLNAme" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="status" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="expected_return_date" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="return_date" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="getStockByCategory_Result">
+    <Property Type="String" Name="stock_code" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="description_of_items" Nullable="false" />
+    <Property Type="Int32" Name="quantity_available" Nullable="false" />
+    <Property Type="String" Name="unit_of_issue" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="unit_of_withdraw" Nullable="false" MaxLength="60" />
+    <Property Type="Int32" Name="reorder_level" Nullable="true" />
+    <Property Type="String" Name="stock_type" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="date_of_order" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="expiry_date" Nullable="true" Precision="23" />
+    <Property Type="String" Name="compartment_ID" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="shelf" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="stock_category" Nullable="false" MaxLength="70" />
+    <Property Type="String" Name="status" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="getStockShelves_Result">
+    <Property Type="String" Name="stock_code" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="description_of_items" Nullable="false" />
+    <Property Type="String" Name="compartment_ID" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="shelf" Nullable="false" MaxLength="25" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="StockToReorder_Result">
+    <Property Type="String" Name="stock_code" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="description_of_items" Nullable="false" />
+    <Property Type="Int32" Name="quantity_available" Nullable="false" />
+    <Property Type="String" Name="unit_of_issue" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="description" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="expiry_date" Nullable="true" Precision="23" />
+    <Property Type="String" Name="compartment_ID" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="shelf" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="description1" Nullable="false" MaxLength="70" />
+    <Property Type="String" Name="status" Nullable="false" MaxLength="20" />
+  </ComplexType>
+</Schema>

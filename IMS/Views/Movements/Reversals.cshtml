@@ -1,0 +1,75 @@
+﻿@model IEnumerable<IMS.Models.getMovements_Result>
+
+@{
+    ViewBag.Title = "Reversals";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <h1>
+        Reversals 
+        <small>View</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i> Dashboard</a></li>
+        <li class="active">Reversals</li>
+    </ol>
+</section>
+<br />
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title"></h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body" style="overflow-x: scroll">
+                <div>
+                    @Html.ActionLink("Create New", "Create")
+                </div>
+                <table id="example2" class="table table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Issue ID</th>
+                            <th>Item Description</th>
+                            <th>Request ID</th>
+                            <th>Quantity</th>
+                            <th>Issued By</th>
+                            <th>Received By</th>
+                            <th>Return Status</th>
+                            <th>Expected Date</th>
+                            <th>Return Date</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.movement_ID</td>
+                                <td>@item.description_of_items</td>
+                                <td>@item.request_ID</td>
+                                <td>@item.quantity_supplied</td>
+                                <td>@item.IssuerFirstName @item.IssuerLastName</td>
+                                <td>@item.ReceiverFNAme @item.ReceiverLNAme</td>
+                                <td>@item.status</td>
+                                <td>@item.expected_return_date</td>
+                                <td>@item.return_date</td>
+                                <td>@Html.ActionLink("View Details", "Create")</td>
+                            </tr>
+                        }
+                    </tbody>
+
+                    <tfoot>
+                        <tr></tr>
+                    </tfoot>
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+</div>
+<!-- /.row -->

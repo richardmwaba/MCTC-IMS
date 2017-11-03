@@ -1,0 +1,93 @@
+﻿@model IEnumerable<IMS.Models.Movement>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.quantity_supplied)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_received)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.expected_return_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.return_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee_Details.surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee_Details1.surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Return_Status1.status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Request_Details.stock_code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stock_Details.unit_of_withdraw)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type_of_Transaction.type_description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.quantity_supplied)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date_received)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.expected_return_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.return_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee_Details.surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee_Details1.surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Return_Status1.status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Request_Details.stock_code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stock_Details.unit_of_withdraw)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type_of_Transaction.type_description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.movement_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.movement_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.movement_ID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,105 @@
+﻿@model IEnumerable<IMS.Models.Stock_Details>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.quantity_available)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.unit_of_withdraw)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description_of_items)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.unit_of_issue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.reorder_level)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.minimum_level)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_of_order)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.expiry_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Shelf_Compartment.shelf_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stock_Availability.status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stock_Category.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stock_Type1.description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.quantity_available)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.unit_of_withdraw)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description_of_items)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.unit_of_issue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.reorder_level)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.minimum_level)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date_of_order)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.expiry_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Shelf_Compartment.compartment_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stock_Availability.status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stock_Category.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stock_Type1.description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

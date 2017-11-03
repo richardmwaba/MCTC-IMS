@@ -1,0 +1,297 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - IMS</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/javascript")
+    <style>
+        .panel_toolbox {
+            float: right;
+            padding-right:5px;
+            min-width: 70px;
+        }
+
+        .x_title {
+            border-bottom: 2px solid #E6E9ED;
+            padding: 1px 5px 6px;
+            margin-bottom: 10px;
+        }
+
+        .panel_header {
+            float: left;
+            padding-left: 20px;
+            padding-top: 5px;
+        }
+    </style>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />   
+    <link href="~/Content/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/ionicons/ionicons.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="hold-transition skin-blue fixed sidebar-mini">
+    <div class="wrapper">
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="@Url.Action("Index", "Home")" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>IMS</b></span>
+                <span class="pull-left"><img src="~/Scripts/Custom/dist/img/Mopani.jpg" ID="Logo" Height="23px" Width="23px" alt="Mopani logo" class="img-rounded"></span>
+                <span class="logo-xs"><b>IMS</b></span>
+            </a>
+            <nav class="navbar navbar-static-top">
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        
+                        <!-- Notifications: style can be found in dropdown.less -->
+                        <li class="dropdown notifications-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-bell-o"></i>
+                            </a>
+                        </li>
+                        <!-- User Account: style can be found in dropdown.less -->
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="~/Scripts/Custom/dist/img/avatar.png" ID="User_image" class="user-image" alt="User-image">
+                                <span class="hidden-xs"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header">
+                                    <img src="~/Scripts/Custom/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                    <p>
+                                        @User.Identity.Name
+                                        <small></small>
+                                    </p>
+                                </li>
+                                <!-- Menu Body -->
+                                <li class="user-body">
+                                    <div class="row">
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">Followers</a>
+                                        </div>
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">Sales</a>
+                                        </div>
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">Friends</a>
+                                        </div>
+                                    </div>
+                                    <!-- /.row -->
+                                </li>
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Control Sidebar Toggle Button -->
+                        <li>
+                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                   
+                </div>
+                <!-- search form -->
+                <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group">
+                        
+                    </div>
+                </form>
+                <!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="@Url.Action("Create", "RequestDetails")">
+                            <i class="fa fa-plus-square-o"></i>
+                            <span>Create request</span>
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="@Url.Action("Index", "Issues")">
+                            <i class="fa fa-folder-open-o"></i>
+                            <span>Issues</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-files-o"></i> <span>Requests</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                            <ul class="treeview-menu">
+                                <li><a href="#"><i class="fa fa-circle-o"></i> My open requests</a></li>
+                                <li><a href="@Url.Action("Approved","RequestDetails")"><i class="fa fa-circle-o"></i> Approved requests</a></li>
+                                <li><a href="@Url.Action("Rejected", "RequestDetails")"><i class="fa fa-circle-o"></i> Rejected requests</a></li>
+                                <li><a href="@Url.Action("Open", "RequestDetails")"><i class="fa fa-circle-o"></i> All open requests</a></li>
+                            </ul>
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="@Url.Action("Reversals", "Movements")">
+                            <i class="fa fa-minus-circle"></i><span>Reversals</span>
+                            @*<span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                            <ul class="treeview-menu">
+                                <li><a href="#"><i class="fa fa-circle-o"></i>All reversals</a></li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i>Create reversal</a></li>
+                            </ul>*@
+                        </a>
+                        
+                    </li>
+                    <li class="treeview">
+                        <a href="@Url.Action("Receipts", "Movements")">
+                            <i class="fa fa-credit-card" aria-hidden="true"></i><span>Receipts</span>
+                        </a>
+
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span>Stock</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("AvailableStock", "StockDetails")"><i class="fa fa-circle-o"></i> Available stock</a></li>
+                            <li><a href="@Url.Action("AllStock", "StockDetails")"><i class="fa fa-circle-o"></i> All stock</a></li>
+                            <li><a href="../UI/buttons.html"><i class="fa fa-circle-o"></i> Create withdraw</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-users"></i> <span>Users</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+
+        <div class="content-wrapper">
+            <section class="content" style="min-height:798px;">
+                @RenderBody()
+            </section>
+        </div>
+
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Designed by</b> Mopani
+            </div>
+            <p>&copy; @DateTime.Now.Year - All rights reserved</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/NS")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $(".select2").select2();
+            //Datemask dd/mm/yyyy
+            $("#datemask").inputmask("dd/mm/yyyy", { "placeholder": "dd/mm/yyyy" });
+            //Datemask2 mm/dd/yyyy
+            $("#datemask2").inputmask("mm/dd/yyyy", { "placeholder": "mm/dd/yyyy" });
+            //Money Euro
+            $("[data-mask]").inputmask();
+
+            //Date range picker
+            $('#reservation').daterangepicker();
+            //Date range picker with time picker
+            $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' });
+            //Date range as a button
+            $('#daterange-btn').daterangepicker(
+                {
+                    ranges: {
+                        'Today': [moment(), moment()],
+                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                        'This Month': [moment().startOf('month'), moment().endOf('month')],
+                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    },
+                    startDate: moment().subtract(29, 'days'),
+                    endDate: moment()
+                },
+                function (start, end) {
+                    $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                }
+            );
+
+            //Date picker
+            $('#datepicker, #datepicker2').datepicker({
+                autoclose: true
+            });
+
+            //iCheck for checkbox and radio inputs
+            $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+                checkboxClass: 'icheckbox_minimal-blue',
+                radioClass: 'iradio_minimal-blue'
+            });
+            //Red color scheme for iCheck
+            $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+                checkboxClass: 'icheckbox_minimal-red',
+                radioClass: 'iradio_minimal-red'
+            });
+            //Flat red color scheme for iCheck
+            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-green',
+                radioClass: 'iradio_flat-green'
+            });
+
+            //Colorpicker
+            $(".my-colorpicker1").colorpicker();
+            //color picker with addon
+            $(".my-colorpicker2").colorpicker();
+
+            //Timepicker
+            $(".timepicker").timepicker({
+                showInputs: false
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false
+            });
+        });
+    </script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

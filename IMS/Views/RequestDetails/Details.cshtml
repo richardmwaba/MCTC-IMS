@@ -1,0 +1,82 @@
+﻿@model IMS.Models.Request_Details
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Request_Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.purpose_of_item)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.purpose_of_item)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date_of_request)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_of_request)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Approval_Status1.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Approval_Status1.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee_Details.surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee_Details.surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee_Details1.surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee_Details1.surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stock_Details.unit_of_withdraw)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stock_Details.unit_of_withdraw)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.request_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

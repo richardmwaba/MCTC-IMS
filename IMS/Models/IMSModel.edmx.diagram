@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="054b09384bf74377a777e0340041dd02" Name="Diagram1">
+        <EntityTypeShape EntityType="StockManagementModel.Approval_Status" Width="1.5" PointX="6" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockManagementModel.Employee_Details" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockManagementModel.Movement" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockManagementModel.Request_Details" Width="1.5" PointX="8.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockManagementModel.Return_Status" Width="1.5" PointX="3" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockManagementModel.Role" Width="1.5" PointX="3" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockManagementModel.Shelf_Compartment" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockManagementModel.Shelves_Table" Width="1.5" PointX="1.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockManagementModel.Stock_Availability" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockManagementModel.Stock_Category" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockManagementModel.Stock_Details" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockManagementModel.Stock_Type" Width="1.5" PointX="0.75" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockManagementModel.Stock_Withdraw" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockManagementModel.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockManagementModel.Type_of_Transaction" Width="1.5" PointX="3" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockManagementModel.user" Width="1.5" PointX="5.25" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockManagementModel.Shelf" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="StockManagementModel.FK_Request_Details_Approval_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="StockManagementModel.FK_Issue_Details_Employee_Details" ManuallyRouted="false" />
+        <AssociationConnector Association="StockManagementModel.FK_Movements_Employee_Details" ManuallyRouted="false" />
+        <AssociationConnector Association="StockManagementModel.FK_Request_Details_Employee_Details" ManuallyRouted="false" />
+        <AssociationConnector Association="StockManagementModel.FK_Request_Details_Employee_Details1" ManuallyRouted="false" />
+        <AssociationConnector Association="StockManagementModel.FK_Stock_Withdraw_Employee_Details" ManuallyRouted="false" />
+        <AssociationConnector Association="StockManagementModel.FK_users_Employee_Details" ManuallyRouted="false" />
+        <AssociationConnector Association="StockManagementModel.FK_Issue_Details_Return_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="StockManagementModel.FK_Movements_Stock_Details" ManuallyRouted="false" />
+        <AssociationConnector Association="StockManagementModel.FK_Movements_Type_of_Transaction" ManuallyRouted="false" />
+        <AssociationConnector Association="StockManagementModel.FK_Request_Details_Stock_Details" ManuallyRouted="false" />
+        <AssociationConnector Association="StockManagementModel.FK_users_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="StockManagementModel.FK_Shelf_Compartment_Shelves_Table" ManuallyRouted="false" />
+        <AssociationConnector Association="StockManagementModel.FK_Stock_Details_Shelf_Compartment" ManuallyRouted="false" />
+        <AssociationConnector Association="StockManagementModel.FK_Stock_Withdraw_Shelf_Compartment" ManuallyRouted="false" />
+        <AssociationConnector Association="StockManagementModel.FK_Stock_Details_Stock_Availability" ManuallyRouted="false" />
+        <AssociationConnector Association="StockManagementModel.FK_Stock_Details_Stock_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="StockManagementModel.FK_Stock_Withdraw_Stock_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="StockManagementModel.FK_Stock_Details_Stock_Type" ManuallyRouted="false" />
+        <AssociationConnector Association="StockManagementModel.FK_Stock_Withdraw_Stock_Details" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

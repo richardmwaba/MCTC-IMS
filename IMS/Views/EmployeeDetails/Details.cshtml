@@ -1,0 +1,90 @@
+﻿@model IMS.Models.Employee_Details
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Employee_Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.firstname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.firstname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.other_names)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.other_names)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.site)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.site)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.department)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.department)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.position)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.position)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user.role_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user.role_ID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.mine_number }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

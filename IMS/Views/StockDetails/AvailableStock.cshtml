@@ -1,0 +1,84 @@
+﻿@model IEnumerable<IMS.Models.Stock_Category>
+
+@{
+    ViewBag.Title = "Available stock";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="content-header">
+    <h1>
+        Available Stock
+        <small>View</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i> Dashboard</a></li>
+        <li class="active">Available Stock</li>
+    </ol>
+</section>
+<br />
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <div class="box" style="border-top-color: #3c8dbc">
+                <div class="box-header">
+                    <h3 class="box-title">@item.description</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body" style="height: 250px;padding-left: 20px;padding-right: 20px; overflow-x:scroll">
+                    @Html.Action("StockAvailableCategory", new { id = @item.category_ID })
+                    <div>
+                        <button class="btn btn-link" data-toggle="modal" data-target="#modalView-@item.category_ID">View all</button>
+                        @*@Html.ActionLink("View all", "StockAvailableCategory",  new { id = @item.category_ID }, new { @class = "btn btn-link", @data_toggle = "modal", @data_target = "#modalView" })*@
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+
+        <!-- Modal for viewing items-->
+        <div class="modal fade" id="modalView-@item.category_ID">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title">@item.description</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div style="padding-left: 20px;padding-right: 20px;max-height: 500px; overflow-y: scroll">
+                            @Html.Action("ModalAvailableStock", new { id = @item.category_ID })
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- ./modal-->
+    }
+
+</div>
+<!-- /.row -->
+@*<script>
+        $(document).ready(
+            function () {
+
+                var table = $('#availableStock');
+                table.each(function (i, e) {
+                    var tbody = $(this).find('tbody');
+                    var tr = tbody.find('tr').length;
+                    alert(tr);
+                });
+
+            }
+            );
+    </script>*@

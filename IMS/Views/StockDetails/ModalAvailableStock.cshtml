@@ -1,0 +1,38 @@
+﻿
+@model IEnumerable<IMS.Models.getAvailableStock_Result>
+<div class="row">
+    <table class="table" id="availableStock">
+        <thead>
+            <tr>
+                <th>Stock Code</th>
+                <th>Item</th>
+                <th>Qty Available</th>
+                <th>Unit</th>
+                <th>Compartment</th>
+                <th>Shelf</th>
+                <th>Request</th>
+                @*<th></th>*@
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>@item.stock_code</td>
+                    <td>@item.description_of_items</td>
+                    <td>@item.quantity_available</td>
+                    <td>@item.unit_of_issue</td>
+                    <td>@item.compartment_ID</td>
+                    <td>@item.shelf</td>
+                    <td>@Html.ActionLink("Request", "") </td>
+                </tr>
+
+            }
+        </tbody>
+
+
+    </table>
+</div>
+

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<IMS.Models.Request_Details>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.purpose_of_item)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_of_request)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Approval_Status1.status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee_Details.surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee_Details1.surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stock_Details.unit_of_withdraw)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.purpose_of_item)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date_of_request)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Approval_Status1.status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee_Details.surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee_Details1.surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stock_Details.unit_of_withdraw)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.request_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.request_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.request_ID })
+        </td>
+    </tr>
+}
+
+</table>

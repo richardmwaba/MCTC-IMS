@@ -1,0 +1,448 @@
+﻿@model IMS.Models.Request_Details
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<section class="content-header">
+    <h1>
+        Create Request
+        <small>View</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i> Dashboard</a></li>
+        <li class="active">Create request</li>
+    </ol>
+</section>
+<br />
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="box" style="border-top-color: #3c8dbc">
+            <div class="box-header">
+                <h3 class="box-title">Requester details</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="form-group ">
+                    <label for="inputMineNo">Mine number</label>
+                    <input type="text" class="form-control" id="inputMineNo" placeholder="Mine Number" value="">
+                    @Html.ValidationMessageFor(model => model.mine_number, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group ">
+                    <label for="name">First name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Name of requester" value="">
+                    @*@Html.ValidationMessageFor(model => model., "", new { @class = "text-danger" })*@
+                </div>
+                <div class="form-group ">
+                    <label for="name">Last Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Name of requester" value="">
+                    @*@Html.ValidationMessageFor(model => model., "", new { @class = "text-danger" })*@
+                </div>
+                <div class="form-group ">
+                    <label for="position">Position</label>
+                    <input type="text" class="form-control" id="position" placeholder="Position" value="">
+                    @*@Html.ValidationMessageFor(model => model., "", new { @class = "text-danger" })*@
+                </div>
+                <div class="form-group">
+                    <label for="department">Department</label>
+                    <input type="text" class="form-control" id="department" placeholder="Department" value="">
+                    @*@Html.ValidationMessageFor(model => model., "", new { @class = "text-danger" })*@
+                </div>
+                <div class="form-group ">
+                    <label for="site">Site</label>
+                    <input type="text" class="form-control" id="Site" placeholder="Site" value="">
+                    @*@Html.ValidationMessageFor(model => model., "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+
+
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="box" style="border-top-color: #3c8dbc">
+            <div class="box-header">
+                <h3 class="box-title">Stock details</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="form-group" hidden>
+                    <label for="requestId">Request ID</label>
+                    <input type="text" class="form-control" id="requestId" value="@ViewBag.request_ID">
+                    @*@Html.ValidationMessageFor(model => model.request_ID, "", new { @class = "text-danger" })*@
+                </div>
+                <div class="form-group ">
+                    <label for="stockName">Name of item</label>
+                    @Html.DropDownList("stock_name", null, htmlAttributes: new { @class = "form-control select2", @id = "stock", @AutopostBack = "true", @style = "width: 100%;" })
+                    @Html.ValidationMessageFor(model => model.stock_code, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group ">
+                    <label for="dateOfRequest">Date of request</label>
+                    <input type="datetime" class="form-control" id="dateOfRequest" value="@DateTime.Now.ToString()">
+                    @Html.ValidationMessageFor(model => model.date_of_request, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group ">
+                    <label for="quantity">Quantity</label>
+                    <input type="number" class="form-control" id="quantity" min="0">
+                    @Html.ValidationMessageFor(model => model.quantity, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group ">
+                    <label for="units">Units</label>
+                    <input type="text" class="form-control" id="units" >
+                    @Html.ValidationMessageFor(model => model.unit_of_issue, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group ">
+                    <label for="dateOfReturn">Expected return date <span class="text-danger">(If not applicable leave blank)</span></label>
+                    <input type="date" class="form-control" id="dateOfReturn" placeholder="If not applicable leave blank">
+                </div>
+
+                <div class="form-group">
+                    <label for="compartment">Shelf compartment</label>
+                    <input type="text" class="form-control" id="compartment">
+                </div>
+
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box" style="border-top-color: #3c8dbc">
+            <div class="box-header">
+                <h3 class="box-title">Purpose of this request</h3>
+            </div>
+            <!-- /.box-header -->
+            
+                <div class="box-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="purpose" class="col-sm-2 col-md-2 col-lg-2 control-label">Reason for request</label>
+                            <div class="col-sm-10 col-md-10 col-lg-10">
+                                <textarea class="form-control" id="purpose" rows="6"></textarea>
+                                @Html.ValidationMessageFor(model => model.purpose_of_item, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </form>
+                    <div class="form-group">
+                        <button id="addButton" class="btn btn-primary pull-right">Add item</button>
+                    </div>
+            </div>
+            <!-- /.box-body -->
+
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box" id="table" style="display: none;border-top-color: #3c8dbc">
+            <div class="box-header">
+                <h3 class="box-title">Requests ready to be sent</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body" style="overflow-x: scroll">
+                <table id="tableBasket" class="table table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Item Description</th>
+                            <th>Quantity</th>
+                            <th>Purpose</th>
+                            <th>Request Date</th>
+                            <th>Remove</th>
+                            <th style="display: none"></th>
+                            <th style="display: none"></th>
+                            <th style="display: none"></th>
+                            <th style="display: none"></th>
+                            <th style="display: none"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        
+                    </tbody>
+
+                    <tfoot>
+                           <tr>
+                               <th></th>
+                               <th></th>
+                               <th></th>
+                               <th></th>
+                               <th></th>
+                           </tr>
+                    </tfoot>
+                    
+                </table>
+                <div class="form-group">
+                    <button id="btnSubmit" onclick="saveRequest();" class="btn btn-primary pull-right" type="submit">Submit for approval</button>
+                </div>
+            </div>
+            <!-- /.box-body -->
+            
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+</div>
+<!-- /.row -->
+@*@using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Request_Details</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.request_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.request_ID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.request_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.stock_code, "stock_code", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("stock_code", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.stock_code, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.compartment_ID, "compartment_ID", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.ValidationMessageFor(model => model.compartment_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.purpose_of_item, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.purpose_of_item, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.purpose_of_item, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.mine_number, "mine_number", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("mine_number", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.mine_number, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.date_of_request, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.date_of_request, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.date_of_request, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.quantity, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.quantity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.approval_status, "approval_status", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("approval_status", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.approval_status, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.approver, "approver", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("approver", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.approver, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+<script>
+    $("#stock").change(function (event) {
+        var stock_code = $(this).val();
+        $.ajax({
+            url: "@Url.Action("getCompartment", "RequestDetails")",
+            data: { id: stock_code },
+            type: "Get",
+            dataType: "html",
+            success: function (data) {
+                //Whatever result you have got from your controller with html partial view replace with a specific html.
+                $("#compartment").val(data); // HTML DOM replace
+            }
+        });
+    });
+
+    $("#stock").change(function (event) {
+        var stock_code = $(this).val();
+        $.ajax({
+            url: "@Url.Action("getUnit", "RequestDetails")",
+            data: { id: stock_code },
+            type: "Get",
+            dataType: "html",
+            success: function (data) {
+                //Whatever result you have got from your controller with html partial view replace with a specific html.
+                $("#units").val(data); // HTML DOM replace
+            }
+        });
+    });
+</script>
+<script>
+    function showTable()
+    {
+        $("#table").show();
+    }
+</script>
+<script>
+    function validateInput() {
+        var isValid = true;
+        $("div.form-group > input").css({ "border-color": "#d2d6de" });
+        $("div.form-group > select").css({ "border-color": "#d2d6de" });
+
+        if ($('#stock').val() == "0" || $('#stock').val() == "") {
+            $('#stock').css({ "border-color": "Red" });
+            ToggleNotification("Required Field!", "You must select a Stock name");
+            isValid = false;
+        } else if ($('#dateOfRequest').val() == "0" || $('#dateOfRequest').val() == "") {
+            $('#dateOfRequest').css({ "border-color": "Red" });
+            ToggleNotification("Required Field!", "You must select a valid Date of request");
+            isValid = false;
+        } else if ($('#quantity').val() == "0" || $('#quantity').val() == "") {
+            $('#quantity').css({ "border-color": "Red" });
+            ToggleNotification("Required Field!", "You must enter a valid quantity");
+            isValid = false;
+        } else if ($('#dateOfReturn').val() == "mm/dd/yyyy") {
+            $('#dateOfReturn').css({ "border": "2px solid Red" });
+            ToggleNotification("Required Field!", "You must select a valid Expected return date");
+            isValid = false;
+        } else if ($('#compartment').val() == "" || $('#compartment').val() == "0") {
+            $('#compartment').css({ "border-color": "Red" });
+            ToggleNotification("Required Field!", "You must select a valid stock to get valid compartment");
+            isValid = false;
+        } else if ($('#purpose').val() == "" || $('#purpose').val() == "0" ) {
+            $('#purpose').css({ "border-color": "Red" });
+            ToggleNotification("Required Field!", "You must enter a valid Reason for request");
+            isValid = false;
+        } 
+        return isValid;
+    }
+</script>
+<script>
+    function BindTable(itemName, quantity, purpose, requestDate, requestId, compartmentId, requester, unit, approvalStatus, approver) {
+        $("#tableBasket > tbody").append("<tr><td>" +
+            itemName +
+            "</td><td>" + quantity + "</td><td>" + purpose + "</td><td>" + requestDate +
+            "</td><td><a class='btn text-danger'><i class='fa fa-trash-o'>" +
+            "</i></a></td><td style = 'display: none'>" + requestId + "</td><td style = 'display: none'>" +
+            compartmentId + "</td><td style = 'display: none'>" + requester + "</td><td style = 'display: none'>" +
+            unit + "</td><td style = 'display: none'>" + approvalStatus + "</td><td style = 'display: none'>" +
+            approver + "</td></tr>" );
+    }
+</script>
+<script>
+    $.fn.scrollView = function () {
+        return this.each(function () {
+            $('html, body').animate({
+                scrollTop: $(this).offset().top
+            }, 600);
+        });
+    }
+</script>
+<script>
+    $("#addButton").click(function () {
+        var itemName = $("#stock").val();
+        var quantity = $("#quantity").val();
+        var purpose = $("#purpose").val();
+        var requestDate = $("#dateOfRequest").val();
+        var requestId = $("#requestId").val();
+        var compartmentId = $("#compartment").val()
+        var requester = $("#inputMineNo").val();
+        var unit = $("#units").val();
+        var approvalStatus = "0";
+        var approver = "";
+        //var del = "<i class='fa fa-trash-o'></i>";
+        if (validateInput() == true) {
+            BindTable(itemName, quantity, purpose, requestDate, requestId, compartmentId, requester, unit, approvalStatus, approver);
+            $("#table").show(function () {
+                $("#quantity").val("");
+                $("#purpose").val("");
+                $("#dateOfReturn").val("");
+            });
+            $("#btnSubmit").scrollView();
+        }
+    });
+</script>
+<script>
+    
+    function saveRequest() {
+        var table = document.getElementById('tableBasket'),
+            rows = table.getElementsByTagName('tr'),
+            i, j, cells, itemName, quantity, purpose, requestDate, requestId, compartmentId, requester, unit, approvalStatus, approver;
+
+        for (i = 0, j = rows.length; i < j; ++i) {
+            cells = rows[i].getElementsByTagName('td');
+            if (!cells.length) {
+                continue;
+            }
+            //passValues();
+            itemName = cells[0].innerHTML;
+            quantity = cells[1].innerHTML;
+            purpose = cells[2].innerHTML;
+            requestDate = cells[3].innerHTML;
+            requestId = cells[5].innerHTML;
+            compartmentId = cells[6].innerHTML;
+            requester = cells[7].innerHTML;
+            unit = cells[8].innerHTML;
+            approvalStatus = cells[9].innerHTML;
+            approver = cells[10].innerHTML;
+
+             @*$.ajax({
+                type: "POST",
+                url: "@Url.Action("createRequest", "RequestDetails")",
+                data: {
+                    request_ID: requestId,
+                    stock_code: itemName,
+                    compartment_ID: compartmentId,
+                    purpose_of_item: purpose,
+                    mine_number: requester,
+                    date_of_request: requestDate,
+                    quantity: quantity,
+                    unit_of_issue: unit,
+                    approval_status: approvalStatus,
+                    approver: approver
+                },
+                success: function () {
+                    alert(requestId + " " + itemName + " " + compartmentId + " " + quantity + " " + unit + " " + purpose + " " + requestDate + requester + " " + approvalStatus + " " + approver);
+                },
+                error: function () {
+                    alert("Something went Wrong.");
+                }
+            });*@
+
+            alert(requestId + " " + itemName + " " + compartmentId + " " + quantity + " " + unit + " " + purpose + " " + requestDate + " " + requester + " " + approvalStatus + " " + approver);
+        }
+    }
+</script>
